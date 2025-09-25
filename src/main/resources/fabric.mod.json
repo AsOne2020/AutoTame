@@ -4,25 +4,26 @@
   "version": "${version}",
 
   "name": "${name}",
-  "description": "Template for my fabric mods",
+  "description": "Automatically retries taming horse-like animals until successful, making taming in Minecraft easier.",
   "authors": [
     "As_One"
   ],
   "contact": {
-    "homepage": "https://modrinth.com",
-    "sources": "https://github.com/AsOne2020/fabric-mod-template"
+    "homepage": "https://modrinth.com/mod/AutoTame",
+    "issues": "https://github.com/AsOne2020/AutoTame/issues",
+    "sources": "https://github.com/AsOne2020/AutoTame"
   },
 
-  "icon": "assets/template_mod/icon.png",
+  "icon": "assets/autotame/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
-      "me.asone.template_mod.TemplateMod"
+      "me.asone.autotame.AutoTame"
     ]
   },
   "mixins": [
-    "template_mod.mixins.json"
+    "autotame.mixins.json"
   ],
 
   "depends": {

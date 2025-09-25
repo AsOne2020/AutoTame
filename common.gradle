@@ -67,9 +67,9 @@ dependencies {
 //	include(annotationProcessor(implementation("io.github.llamalad7:mixinextras-${mod_brand}:${project.mixinextras_version}")))
 }
 
-String MOD_ICON_PATH = 'assets/template_mod/icon.png'
-String MIXIN_CONFIG_PATH = 'template_mod.mixins.json'
-String LANG_DIR = 'assets/template_mod/lang'
+String MOD_ICON_PATH = 'assets/autotame/icon.png'
+String MIXIN_CONFIG_PATH = 'autotame.mixins.json'
+String LANG_DIR = 'assets/autotame/lang'
 JavaVersion JAVA_COMPATIBILITY
 if (mcVersion >= 12005 && !(mcVersion < 12100 && mod_brand == 'forge')) {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_21
@@ -127,8 +127,8 @@ if (System.getenv("JITPACK") == "true") {
 	fullArtifactVersion = artifactVersion + artifactVersionSuffix
 } else {
 	base.archivesName = project.archives_base_name
-	fullProjectVersion = 'v' + project.mod_version + '-mc' + project.minecraft_version + '-' + mod_brand + modVersionSuffix
-	fullArtifactVersion = artifactVersion + '-mc' + project.minecraft_version + '-' + mod_brand + artifactVersionSuffix
+	fullProjectVersion = 'v' + project.mod_version + '-mc' + project.archive_mc_version + '-' + mod_brand + modVersionSuffix
+	fullArtifactVersion = artifactVersion + '-mc' + project.archive_mc_version + '-' + mod_brand + artifactVersionSuffix
 }
 version = fullProjectVersion
 

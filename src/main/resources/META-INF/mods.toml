@@ -1,16 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[31,)"
 license = "LGPLv3"
-issueTrackerURL = "https://github.com/AsOne2020/fabric-mod-template/issues"
+issueTrackerURL = "https://github.com/AsOne2020/AutoTame/issues"
 
 [[mods]]
 modId = "${id}"
 version = "${version}"
 displayName = "${name}"
-displayURL = "https://github.com/AsOne2020/fabric-mod-template"
+displayURL = "https://modrinth.com/mod/AutoTame"
 authors = "As_One"
 description = '''
-Template for my fabric mods
+Automatically retries taming horse-like animals until successful, making taming in Minecraft easier.
 '''
 logoFile = "icon.png"
 
@@ -19,4 +19,4 @@ modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_dependency}"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
