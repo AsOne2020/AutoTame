@@ -13,7 +13,7 @@
     "issues": "https://github.com/AsOne2020/AutoTame/issues",
     "sources": "https://github.com/AsOne2020/AutoTame"
   },
-
+  "license": "LGPLv3",
   "icon": "assets/autotame/icon.png",
 
   "environment": "client",
