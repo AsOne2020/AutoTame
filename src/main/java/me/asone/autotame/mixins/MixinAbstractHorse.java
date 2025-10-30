@@ -21,40 +21,17 @@
 package me.asone.autotame.mixins;
 
 import me.asone.autotame.HorseEventTrigger;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientPlayerEntity.class)
-public class MixinClientPlayerEntity {
-
-
-	@Inject(
-			//#if MC <= 11502
-			method = "stopRiding",
-			//#elseif MC <= 11605
-			//$$ method = "method_29239",
-			//#else
-			//$$ method = "dismountVehicle",
-			//#endif
-			at = @At("HEAD")
-	)
-	public void stopRidingHead(CallbackInfo ci) {
-		if (MinecraftClient.getInstance().player.getVehicle() instanceof HorseBaseEntity) {
-			PlayerEntity player = MinecraftClient.getInstance().player;
-			HorseBaseEntity hbe = (HorseBaseEntity) player.getVehicle();
-			if (hbe.isTame() || !player.getMainHandStack().isEmpty()) return;
-			HorseEventTrigger.onEvent(hbe, HorseEventTrigger.Source.STOP_RIDING);
-		}
-	}
-
-	@Inject(method = "tick", at = @At("RETURN"))
-	public void tick(CallbackInfo ci) {
-		HorseEventTrigger.tick();
+@Mixin(AbstractHorse.class)
+public class MixinAbstractHorse {
+	@Inject(method = "handleEntityEvent", at = @At("HEAD"))
+	public void handleEntityEvent(byte status, CallbackInfo ci) {
+		if (status != 6) return;
+		HorseEventTrigger.onEvent((AbstractHorse) (Object) this, HorseEventTrigger.Source.UPDATE_STATUS);
 	}
 }

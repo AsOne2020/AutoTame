@@ -4,8 +4,8 @@
   "package": "me.asone.autotame.mixins",
   "compatibilityLevel": "{{COMPATIBILITY_LEVEL}}",
   "client": [
-    "MixinClientPlayerEntity",
-    "MixinHorseBaseEntity"
+    "MixinLocalPlayer",
+    "MixinAbstractHorse"
   ],
   "injectors": {
     "defaultRequire": 1

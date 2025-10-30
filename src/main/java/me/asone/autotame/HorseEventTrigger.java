@@ -20,22 +20,22 @@
 
 package me.asone.autotame;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.passive.HorseBaseEntity;
-import net.minecraft.util.Hand;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
 
 public class HorseEventTrigger {
 	private static long statusTime = -1, ridingTime = -1;
-	private static HorseBaseEntity statusHorse, ridingHorse;
+	private static AbstractHorse statusHorse, ridingHorse;
 	private static final long TIME_WINDOW = 100L;
 
 	private static final int DELAY_TICKS = 2;
-	private static HorseBaseEntity delayedHorse = null;
+	private static AbstractHorse delayedHorse = null;
 	private static int remainingTicks = 0;
 
 	public enum Source {UPDATE_STATUS, STOP_RIDING}
 
-	public static void onEvent(HorseBaseEntity horse, Source src) {
+	public static void onEvent(AbstractHorse horse, Source src) {
 		long now = System.currentTimeMillis();
 		if (src == Source.UPDATE_STATUS) {
 			statusTime = now;
@@ -68,11 +68,11 @@ public class HorseEventTrigger {
 		statusHorse = ridingHorse = null;
 	}
 
-	private static void trigger(HorseBaseEntity horse) {
-		MinecraftClient client = MinecraftClient.getInstance();
+	private static void trigger(AbstractHorse horse) {
+		Minecraft client = Minecraft.getInstance();
 
-		if (!client.player.getMainHandStack().isEmpty() || !horse.isAlive()) return;
+		if (!client.player.getMainHandItem().isEmpty() || !horse.isAlive()) return;
 
-		client.interactionManager.interactEntity(client.player, horse, Hand.MAIN_HAND);
+		client.gameMode.interact(client.player, horse, InteractionHand.MAIN_HAND);
 	}
 }
