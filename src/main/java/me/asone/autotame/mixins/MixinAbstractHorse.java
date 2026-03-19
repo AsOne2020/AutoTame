@@ -21,11 +21,16 @@
 package me.asone.autotame.mixins;
 
 import me.asone.autotame.HorseEventTrigger;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+//#if MC >= 12111
+import net.minecraft.world.entity.animal.equine.AbstractHorse;
+//#else
+//$$ import net.minecraft.world.entity.animal.horse.AbstractHorse;
+//#endif
 
 @Mixin(AbstractHorse.class)
 public class MixinAbstractHorse {

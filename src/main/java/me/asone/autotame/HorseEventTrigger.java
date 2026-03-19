@@ -22,7 +22,12 @@ package me.asone.autotame;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
+
+//#if MC >= 12111
+import net.minecraft.world.entity.animal.equine.AbstractHorse;
+//#else
+//$$ import net.minecraft.world.entity.animal.horse.AbstractHorse;
+//#endif
 
 public class HorseEventTrigger {
 	private static long statusTime = -1, ridingTime = -1;

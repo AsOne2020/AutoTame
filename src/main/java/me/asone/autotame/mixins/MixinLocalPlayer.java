@@ -23,12 +23,17 @@ package me.asone.autotame.mixins;
 import me.asone.autotame.HorseEventTrigger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+//#if MC >= 12111
+import net.minecraft.world.entity.animal.equine.AbstractHorse;
+//#else
+//$$ import net.minecraft.world.entity.animal.horse.AbstractHorse;
+//#endif
 
 @Mixin(LocalPlayer.class)
 public class MixinLocalPlayer {
@@ -36,9 +41,9 @@ public class MixinLocalPlayer {
 
 	@Inject(
 			//#if MC <= 11502
-			method = "stopRiding",
+			//$$ method = "stopRiding",
 			//#else
-			//$$ method = "removeVehicle",
+			method = "removeVehicle",
 			//#endif
 			at = @At("HEAD")
 	)
